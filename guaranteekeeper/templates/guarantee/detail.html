@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <span><a href="{% url 'guarantee:update' pk=guarantee.pk%}">수정</a></span>
+    <span><a href="{% url 'guarantee:delete' pk=guarantee.pk%}">삭제</a></span>
+    <h1>{{ guarantee.product }}</h1>
+    <p>모델명: {{ guarantee.model_code }}</p>
+    <p>S/N: {{ guarantee.serial_number }}</p>
+    <p>구입가액: {{ guarantee.paid_money }}</p>
+    <p>구입일자: {{ guarantee.purchased_date }}</p>
+    <p>보증기한: {{ guarantee.warranty }}</p>
+    <a href="{% url 'guarantee:list' %}">뒤로가기</a>
+{% endblock %}

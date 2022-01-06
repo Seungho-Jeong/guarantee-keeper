@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>새 보증서 등록</h1>
+    <form method="post" class="guarantee-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">저장</button>
+        <button type="button" class="save btn btn-default"><a href="{% url 'guarantee:list' %}">뒤로가기</a></button>
+    </form>
+{% endblock %}
