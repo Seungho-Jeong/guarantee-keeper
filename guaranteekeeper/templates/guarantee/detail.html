@@ -4,9 +4,34 @@
     <span><a href="{% url 'guarantee:delete' pk=guarantee.pk%}">삭제</a></span>
     <h1>{{ guarantee.product }}</h1>
     <p>모델명: {{ guarantee.model_code }}</p>
-    <p>S/N: {{ guarantee.serial_number }}</p>
-    <p>구입가액: {{ guarantee.paid_money }}</p>
-    <p>구입일자: {{ guarantee.purchased_date }}</p>
-    <p>보증기한: {{ guarantee.warranty }}</p>
+    <p>일련번호(S/N): {{ guarantee.serial_number }}</p>
+    <p>
+        <span>구입일자:
+            {% if guarantee.purchased_date %}
+                {{ guarantee.purchased_date | date:"Y년 m월 d일" }}
+            {% else %}
+                미입력
+            {% endif %}
+        </span>
+        <span>보증기한:
+            {% if guarantee.warranty %}
+                {{ guarantee.warranty | date:"Y년 m월 d일까지" }}
+            {% else %}
+                미입력
+            {% endif %}
+        </span>
+    </p>
+    {% if guarantee.paid_money %}
+        <p>구입가액: {{ guarantee.paid_money }} 원</p>
+    {% endif %}
+    {% if guarantee.warranty_image %}
+        <span>보증서 사진: <img src="{{ guarantee.warranty_image.url }}" alt=""></span>
+    {% endif %}
+    {% if guarantee.product_image %}
+        <span>제품 사진: <img src="{{ guarantee.product_image.url }}" alt=""></span>
+    {% endif %}
+    {% if guarantee.receipt_image %}
+        <span>영수증 사진: <img src="{{ guarantee.receipt_image.url }}" alt=""></span>
+    {% endif %}
     <a href="{% url 'guarantee:list' %}">뒤로가기</a>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>새 보증서 등록</h1>
-    <form method="post" class="guarantee-form">
+    <form method="post" class="guarantee-form" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">저장</button>

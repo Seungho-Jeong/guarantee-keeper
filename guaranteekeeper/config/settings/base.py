@@ -28,7 +28,7 @@ SECRET_KEY = env_const.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     'guarantee',
 ]
 
@@ -124,7 +125,20 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
+# Media file path.
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Storage library set for AWS S3.
+AWS_STORAGE_BUCKET_NAME = env_const.AWS_S3['bucket_name']
+AWS_S3_REGION_NAME = 'ap-northeast-2'
+AWS_ACCESS_KEY_ID = env_const.AWS_S3['key_id']
+AWS_SECRET_ACCESS_KEY = env_const.AWS_S3['secret_key']
+
+STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"

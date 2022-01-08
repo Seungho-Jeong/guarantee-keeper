@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-    <a href="{% url 'guarantee:new' %}" class="btn btn-dark rounded-pill mt-3 px-3">New guarantee</a>
+    <a href="{% url 'guarantee:new' %}" class="btn btn-dark rounded-pill mt-3 px-3">새 보증서 등록</a>
     {% for guarantee in guarantee_list %}
         <h2><a href="{% url 'guarantee:detail' pk=guarantee.pk %}">{{ guarantee.product }}</a></h2>
         <p>등록일시: {{ guarantee.created_at }}</p>
