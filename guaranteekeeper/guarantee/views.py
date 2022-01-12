@@ -13,7 +13,7 @@ class GuaranteeListView(ListView):
 
 
 class GuaranteeDetailView(DetailView):
-    model = Guarantee
+    model = Guarantee,
     context_object_name = "guarantee"
     template_name = "guarantee/detail.html"
 

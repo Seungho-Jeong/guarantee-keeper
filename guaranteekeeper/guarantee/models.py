@@ -21,6 +21,14 @@ class TimeStamped(models.Model):
 
 
 class Guarantee(TimeStamped):
+    CATEGORY_CHOICES = [
+        ('mobile', '모바일/웨어러블'),
+        ('home', '가전제품'),
+        ('pc', 'PC/노트북'),
+        ('office', '사무용품'),
+    ]
+
+    category = models.CharField(max_length=6, choices=CATEGORY_CHOICES)
     product = models.CharField(max_length=30)
     model_code = models.CharField(max_length=30, blank=True)
     serial_number = models.CharField(max_length=40, blank=True, default='-')
@@ -35,4 +43,4 @@ class Guarantee(TimeStamped):
         return self.product
 
     class Meta:
-        db_table = 'guarantee_information'
+        db_table = 'guarantees'
