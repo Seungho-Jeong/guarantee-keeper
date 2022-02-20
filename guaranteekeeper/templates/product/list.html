@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container my-3">
+        <table class="table">
+            <thead>
+            <tr class="thead-dark">
+                <th>카테고리</th>
+                <th>제품명</th>
+                <th>등록일시</th>
+                <th>보증기한</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if product_list %}
+            {% for product in product_list %}
+            <tr>
+                <td>{{ product.category }}</td>
+                <td>
+                    <a href="{% url 'products:detail' pk=product.pk %}">{{ product.name }}</a>
+                </td>
+                <td>{{ product.created_at }}</td>
+                <td>{{ product.warranty_period }}</td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="3">등록된 보증서가 없습니다.</td>
+            </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{% url 'products:new' %}" class="btn btn-default btn-md">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 새 보증서 등록
+    </a>
+
+
+
+{% endblock %}

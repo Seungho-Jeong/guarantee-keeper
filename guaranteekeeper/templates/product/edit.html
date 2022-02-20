@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="page-header">
+        <h2>새 보증서 등록</h2>
+    </div>
+    <form method="post" class="guarantee-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for field in form %}
+                    {% if field.errors %}
+                    <strong>{{ field.label }}</strong>
+                    {{ field.errors }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">저장</button>
+        <a href="{% url 'products:list' %}" class="btn btn-default">뒤로가기</a>
+    </form>
+{% endblock %}

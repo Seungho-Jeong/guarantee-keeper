@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+    <span><a href="{% url 'products:update' pk=product.pk %}">수정</a></span>
+    <span><a href="{% url 'products:delete' pk=product.pk %}">삭제</a></span>
+    <h2>{{ product.name }}</h2>
+    <div>
+        <p>모델명: {{ product.model_code }}</p>
+        <p>일련번호(S/N): {{ product.serial_number }}</p>
+        <p>
+            <span>구입일자:
+                {% if product.purchased_date %}
+                    {{ product.purchased_date | date:"Y년 m월 d일" }}
+                {% else %}
+                    미입력
+                {% endif %}
+            </span>
+            <span>보증기한:
+                {% if product.warranty_period %}
+                    {{ product.warranty_period | date:"Y년 m월 d일까지" }}
+                {% else %}
+                    미입력
+                {% endif %}
+            </span>
+        </p>
+        {% if product.paid_money %}
+            <p>구입가액: {{ product.purchased_money }} 원</p>
+        {% endif %}
+        {% if product.image_guarantee %}
+            <span>보증서 사진: <img src="{{ product.image_guarantee.url }}" alt=""></span>
+        {% endif %}
+        {% if product.image_product %}
+            <span>제품 사진: <img src="{{ product.image_product.url }}" alt=""></span>
+        {% endif %}
+        {% if product.image_receipt %}
+            <span>영수증 사진: <img src="{{ product.image_receipt.url }}" alt=""></span>
+        {% endif %}
+    </div>
+    <a href="{% url 'products:list' %}">뒤로가기</a>
+{% endblock %}
